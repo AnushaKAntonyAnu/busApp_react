@@ -5,6 +5,7 @@ import AddUser from './components/AddUser';
 import LoginUser from './components/LoginUser';
 import AddBus from './components/AddBus';
 import SearchBus from './components/SearchBus';
+import ViewallBus from './components/ViewallBus';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' element={<LoginUser/>}/>
       <Route path='/add' element={<AddBus/>}/>
       <Route path='/search' element={<SearchBus/>}/>
+      <Route path='/view' element={<ViewallBus/>}/>
      </Routes>
      </BrowserRouter>
     </div>
