@@ -25,7 +25,7 @@ const AddUser = () => {
             (response)=>{
                 console.log(response.data)
                 if (response.data.status=="success") {
-                    alert("SuccessFully Added")
+                    alert("SuccessFully Register")
                 } else {
                     alert("Error")
                 }
