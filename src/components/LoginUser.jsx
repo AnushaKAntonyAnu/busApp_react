@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginUser = () => {
     const[data,setData]=useState(
@@ -20,15 +20,23 @@ const readValue=()=>{
     console.log(data)
     axios.post("http://localhost:8080/login",data).then(
         (response)=>{
-            console.log(response.data)
-            if (response.data.status=="success") {
-                alert("success ")
-            } else {
-                alert("error")
+            if(response.data.status == "success"){
+                sessionStorage.setItem("token",response.data.token)
+                sessionStorage.setItem("userid",response.data.userid)
+                navigate("/add")
+            }
+            else{
+                alert("FAILED")
             }
         }
-    )
+    ).catch(
+        (error)=>{
+            console.log(error.message)
+            alert(error.message)
+        }
+    ).finally()
 }
+let navigate = useNavigate()
     return (
         <div>
            
@@ -50,7 +58,7 @@ const readValue=()=>{
                                 </div>
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                     <button className="btn btn-success" onClick={readValue}>Log In</button>
-                                    <p>New User Click Here<Link to="/add">Login</Link></p>
+                                    <p>New User Click Here<Link to="/reg">Register</Link></p>
                                 </div>
                             </div>
                         </div>
